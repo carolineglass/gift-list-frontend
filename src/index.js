@@ -2,41 +2,64 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
 let giftsInitialState = {
-  gifts: [],
-  number: 0
+  gifts: [
+    {
+      id: 1,
+      person: "Paul",
+      gift: "Book",
+    }
+  ],
 }
 
 // The return value of the reducer becomes our global state
 // Initial state is the default argument
-const giftReducer = (state = giftsInitialState, action) => {
+
+const giftsReducer = (state = giftsInitialState, action) => {
   switch(action.type) {
-    case "ADD_ONE":
+    case "ADD_NUMBER":
       return {
         ...state, number: state.number + action.payload
+      }
+    case "ADD_GIFT": 
+      let copyOfGifts = [...state.gifts, action.payload]
+      return {
+        ...state, gifts: copyOfGifts
       }
     default: 
       return state
   }
 }
 
-let theStoreObject = createStore(giftReducer)
-console.log("SET UP", theStoreObject.getState())
+let theStoreObject = createStore(
+  giftsReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 
-// an action is a POJO that describes what needs to be done 
-// and info to get it done [payload can be anything you want]
+//  the second argument with window will set up REDUX DEVTOOLS
+//  the devtools tell you whats available in your global state
 
-let theActionToAdd1 = {
-  type: "ADD_ONE",
-  payload: 1
-}
-//dispatch that action
-theStoreObject.dispatch(theActionToAdd1)
+//    an action is a POJO that describes what needs to be done 
+//    and info to get it done [payload can be anything you want]
 
-console.log("AFTER DISPATCH", theStoreObject.getState())
+// let theActionToAdd1 = {
+//   type: "ADD_NUMBER",
+//   payload: 1
+// }
+
+//    dispatch that action
+
+// theStoreObject.dispatch(theActionToAdd1)
+// theStoreObject.dispatch({
+//   type: "ADD_GIFT",
+//   payload: "Candle"
+// })
 
 ReactDOM.render(
-    <App />,
+  <Provider store={theStoreObject}>
+    <App /> 
+  </Provider>,
   document.getElementById('root')
 );
