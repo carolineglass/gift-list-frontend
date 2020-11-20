@@ -10,6 +10,11 @@ let giftsInitialState = {
       id: 1,
       person: "Paul",
       gift: "Book",
+    },
+    {
+      id: 2,
+      person: "Caroline",
+      gift: "Candle"
     }
   ],
 }
@@ -19,10 +24,6 @@ let giftsInitialState = {
 
 const giftsReducer = (state = giftsInitialState, action) => {
   switch(action.type) {
-    case "ADD_NUMBER":
-      return {
-        ...state, number: state.number + action.payload
-      }
     case "ADD_GIFT": 
       let copyOfGifts = [...state.gifts, action.payload]
       return {
