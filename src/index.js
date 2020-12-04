@@ -5,18 +5,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 let giftsInitialState = {
-  gifts: [
-    {
-      id: 1,
-      person: "Paul",
-      gift: "Book",
-    },
-    {
-      id: 2,
-      person: "Caroline",
-      gift: "Candle"
-    }
-  ],
+  gifts: []
 }
 
 // The return value of the reducer becomes our global state
@@ -24,11 +13,15 @@ let giftsInitialState = {
 
 const giftsReducer = (state = giftsInitialState, action) => {
   switch(action.type) {
-    case "ADD_GIFT": 
-      let copyOfGifts = [...state.gifts, action.payload]
+    case "SET_ALL_GIFTS": 
       return {
-        ...state, gifts: copyOfGifts
+        ...state, 
+        gifts: action.payload
       }
+      // let copyOfGifts = [...state.gifts, action.payload]
+      // return {
+      //   ...state, gifts: copyOfGifts
+      // }
     default: 
       return state
   }

@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Gift = ({ person, gift }) => {
+const Gift = ( props ) => {
+    const { name } = props.giftObj
+    //deconstructing props
+
     return (
         <div>
-            <p>Name: {person}</p>
-            <p>Gift: {gift}</p>
+            <p>Name: {name} </p>
+            <p>Gift: </p>
         </div>
     )
 }

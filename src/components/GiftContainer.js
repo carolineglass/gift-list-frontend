@@ -4,9 +4,11 @@ import Gift from './Gift'
 
 const GiftContainer = ( props ) => {
     let arrayOfGifts = props.gifts.map((g) => {
-        return <Gift person={g.person} gift={g.gift}/>
+        return <Gift giftObj={g}/>
     })
+    
     console.log("PROPS", props)
+
     return (
         <div style={{padding: "100px"}}>
 
