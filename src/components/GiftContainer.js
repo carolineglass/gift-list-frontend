@@ -6,8 +6,6 @@ const GiftContainer = ( props ) => {
     let arrayOfGifts = props.gifts.map((g) => {
         return <Gift giftObj={g}/>
     })
-    
-    console.log("PROPS", props)
 
     return (
         <div style={{padding: "100px"}}>
@@ -24,7 +22,6 @@ const GiftContainer = ( props ) => {
     // the OBJ will be merged into the components props
     // the first argument of mapStateToProps is the global state
 let mapStateToProps = (globalState) => {
-    console.log("FROM INSIDE MAPSTATETOPROPS", globalState)
     return {
         gifts: globalState.gifts
     }

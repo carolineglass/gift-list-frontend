@@ -5,15 +5,11 @@ import { connect } from 'react-redux'
 
 const App = ( props ) => {
 
-  console.log(props, "APP")
-  
-  let setAllGifts = props.setAllGifts
-
    useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(resp => resp.json())
     .then((users) => {
-      setAllGifts(users)})
+      props.setAllGifts(users)})
     }
    )
 
